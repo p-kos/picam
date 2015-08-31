@@ -1,2 +1,120 @@
 # picam
-Using webcam for secure home, with motion in raspberry and google drive as hosting
+Using webcam for secure home, with motion, NodeJS, AngularJS in raspberry 
+
+## Installation
+
+### NodeJS 
+There are many versions of [http://nodejs.org](NodeJS) to download but is better to choose one working with all npm packages need, I found issues with lasted version with _sqlite3_ so you can download what I used.
+
+	wget http://nodejs.org/dist/v0.10.10/node-v0.10.10-linux-arm-pi.tar.gz
+
+Then uncompress it
+	
+	tar xvfz node-v0.10.10-linux-arm-pi.tar.gz
+	
+Test if it is working
+	
+	./node-v0.10.10-linux-arm-pi/bin/node --version
+
+It should show you *v0.10.10*
+
+Then add the path to you profile, in raspbian the file is .profile (make sure you are at home `cd ~` )
+
+	sudo vi .profile
+
+Then add the following lines to the file
+
+	NODE_JS_HOME=/home/pi/node-v0.10.10-linux-arm-pi
+	PATH=$PATH:$NODE_JS_HOME/bin
+
+That should be enought, try with the following command again
+
+	node --version
+	
+It should show you *v0.10.10*
+
+### Clone the Project
+In raspberry choose a folder and clone the project (make sure to give it the proper rights). I used ~ (home)
+
+	cd ~
+	chmod 777 motion
+	clone https://github.com/p-kos/picam.git
+
+### Motion
+First we need to update then install motion
+
+	sudo apt-get update
+	sudo apt-get motion
+	
+Open the configuration file and replace the lines by
+	
+	sudo vi /etc/motion/motion.conf
+	
+	width 320
+	height 240
+also
+	
+	threshold 3000
+	
+interval
+
+	snapshot_interval 60
+
+target directory
+
+	target_dir /home/pi/picam/captures
+	
+The most important 
+
+	on_picture_save node /home/pi/picam/processImage.js /home/pi/picam/dbImages.db %f
+	
+What you did in last line is when a new image is saved after capture run a NodeJS script and use the file _dbImages.db_ as SQLite3 database any file in _%f_ 
+
+The save the file by pressing **Esc :wq!** in _vi_
+ 
+	
+### Packages
+
+Go to folder picam and install the packages needed
+
+	cd ~/picam
+	npm install
+	
+## Let's get it work
+### Motion
+To run motion you just need to execute the command
+	
+	motion
+To cancel **Ctrl + C** 
+
+### Server
+To run the server 
+
+	node app.js
+
+The server will run under port **3705** 
+
+### Client
+
+Open your favorite browser the raspberry pi url
+
+	http://192.168.1.123:3705 
+
+Mine is under that IP address.
+
+All the captures images will be saved under /home/pi/picam/captures and the database file will index those
+
+## Author
+Marco Zarate 
+
+pkitos@gmail.com
+
+[https://twitter.com/p_kos](@p_kos)
+
+[https://bo.linkedin.com/in/marcozaratez]()
+
+## Thanks
+Thx to many post I saw in order to learn how to configure motion.
+[http://patolin.com/blog/2012/12/12/video-vigilancia-con-el-raspberry-pi/](Video Vigilancia con el Raspberry Pi)
+[http://jeremyblythe.blogspot.com](Jeremy's Blog) 
+	

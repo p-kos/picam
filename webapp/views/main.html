@@ -1,0 +1,41 @@
+
+<div class="imageViewer">
+  <div class="tittleSection">
+    {{currentDate  | date : format : longDate}}
+  </div>
+
+  <div class="imageSection">
+    <img ng-src="captures/{{imgSrc}}">
+  </div>
+
+  <div class="listSection">
+    <div ng-repeat="date in Dates">
+      <p>{{LoadingDates}}</p>
+      <img width="80" ng-src="captures/{{date.FileName}}" ng-click="getImages(date.DateOnly)">
+      <p>{{date.DateOnly}} ({{date.Cnt}})</p>
+    </div>
+  </div>
+
+  <div class="imgControls">
+    <div>
+      <button id="btnPlayPause" ng-click="playPause()" ng-class="{'btnPause':isPlaying , 'btnPlay':isPlaying==false}"></button>
+    </div>
+    <div>
+      <button id="btnFwd" ng-click="fwd()" ng-class="{'btnFwd2x':speed>1}">{{speed>1? "x"+speed:""}}</button>
+    </div>
+    <div>
+      {{Images[0].Time}}
+    </div>
+    <div>
+      <input type="range" id="rngPosition" minlength=0 ng-maxlength="{{Images.length}}" ng-model="selectedItemId" ng-mousedown="pause()" ng-mouseup="setCurrentPositition()">
+    </div>
+    <div>
+      {{Images[Images.length-1].Time}}
+    </div>
+    <div>
+      {{currentTime}}
+    </div>
+  </div>
+</div>
+
+

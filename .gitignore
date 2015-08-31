@@ -1,0 +1,10 @@
+node_modules
+dist
+.tmp
+.sass-cache
+bower_components
+captures/*
+dbImages.db
+client_secrets.json
+test/
+index_copy.html

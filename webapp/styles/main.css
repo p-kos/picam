@@ -1,0 +1,168 @@
+/* Space out content a bit */
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+
+}
+.text-muted{
+  text-align: center;
+  width: 100%;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 10px;
+  padding-bottom: 9px;
+
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 2px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.imageViewer{
+  margin-right: auto;
+  margin-left: auto;
+  width: 500px;
+  height: 380px;
+  background-color: #000000;
+  box-shadow: 10px 10px 5px #888888;
+  border-radius: 10px;
+}
+.imageViewer div{
+  float: left;
+}
+.imageViewer .tittleSection{
+  color: #ffffff;
+  text-align: center;
+  width: 100%;
+}
+.imageViewer .imageSection{
+  width: 400px;
+  height: 300px;
+  background-color: #000000;
+
+}
+.imageViewer .imageSection img{
+  width: 400px;
+  border: solid 1px #000000;
+}
+.imageViewer .listSection{
+  width: 100px;
+  height: 310px;
+  color: #ffffff;
+  text-align: center;
+  overflow: scroll;
+  font-size: 9pt;
+  background-color: #000000;
+}
+.imageViewer .listSection div{
+  float: none;
+  margin-bottom: 5px;
+  cursor: hand;
+}
+.imgControls{
+  width: 498px;
+  font-size: 9pt;
+
+  border: solid 1px #000000;
+  height: 50px;
+  background-color: #ffffff;
+  -moz-border-radius-bottomleft: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  -moz-border-radius-bottomright: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+
+}
+.imgControls div{
+  float: left;
+  vertical-align: middle;
+}
+
+
+#btnPlayPause{
+  height: 32px;
+  width: 32px;
+  border-radius: 16px;
+  border: solid 1px #000000;
+  background-color: #ffffff;
+  background-image: url("../images/playbuttons.png");
+  background-repeat: no-repeat;
+
+}
+.btnPlay{
+  background-position: -55px 6px;
+}
+.btnPause{
+  background-position: -25px 6px;
+}
+
+#btnFwd{
+  height: 32px;
+  width: 32px;
+  border-radius: 16px;
+  border: solid 1px #000000;
+  color: #ffffff;
+  background-color: #ffffff;
+  background-image: url("../images/fwdbutton.png");
+  background-repeat: no-repeat;
+  background-position: 3px 6px;
+  font-size: 7px;
+}
+
+button:hover{
+  cursor: hand;
+}
+
+#rngPosition{
+  width: 240px;
+}
+/* Customize container */
+@media (min-width: 768px) {
+  .container {
+    max-width: 100%;
+  }
+}
+.container-narrow > hr {
+  margin: 10px 0;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 10px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
