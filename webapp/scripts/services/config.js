@@ -11,4 +11,5 @@ angular.module('picamApp')
   .constant('config', {
     intervalTimeInSeconds:1000
     , serviceUrlBase: '/api'
+    , imagesBaseUrl:'captures'
   });

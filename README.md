@@ -1,10 +1,12 @@
 # picam
+![](http://1.bp.blogspot.com/-MJS-yG55sb4/VeRJdh74a-I/AAAAAAAAGiU/3CS3NW7bWHw/s1600/Screen%2BShot%2B2015-08-31%2Bat%2B8.30.49%2BAM.png)
+
 Using webcam for secure home, with motion, NodeJS, AngularJS in raspberry 
 
 ## Installation
 
 ### NodeJS 
-There are many versions of [http://nodejs.org](NodeJS) to download but is better to choose one working with all npm packages need, I found issues with lasted version with _sqlite3_ so you can download what I used.
+There are many versions of [NodeJS](http://nodejs.org) to download but is better to choose one working with all npm packages need, I found issues with lasted version with _sqlite3_ so you can download what I used.
 
 	wget http://nodejs.org/dist/v0.10.10/node-v0.10.10-linux-arm-pi.tar.gz
 
@@ -105,16 +107,17 @@ Mine is under that IP address.
 All the captures images will be saved under /home/pi/picam/captures and the database file will index those
 
 ## Author
-Marco Zarate 
+Marco Zarate (P-KoS)
 
-pkitos@gmail.com
+[pkitos@gmail.com](mailto:pkitos@gmail.com)
 
-[https://twitter.com/p_kos](@p_kos)
+[@p_kos](https://twitter.com/p_kos)
 
-[https://bo.linkedin.com/in/marcozaratez]()
+[Linked in](https://bo.linkedin.com/in/marcozaratez)
 
 ## Thanks
 Thx to many post I saw in order to learn how to configure motion.
-[http://patolin.com/blog/2012/12/12/video-vigilancia-con-el-raspberry-pi/](Video Vigilancia con el Raspberry Pi)
-[http://jeremyblythe.blogspot.com](Jeremy's Blog) 
+[Video Vigilancia con el Raspberry Pi](http://patolin.com/blog/2012/12/12/video-vigilancia-con-el-raspberry-pi/)
+
+[Jeremy's Blog](http://jeremyblythe.blogspot.com) 
 	
