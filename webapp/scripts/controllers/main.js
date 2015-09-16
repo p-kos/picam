@@ -16,13 +16,13 @@ angular.module('picamApp')
     $scope.currentDate = d;
     $scope.Images = new Array();
     $scope.currentTime = "00:00:00";
-    var currentIndex = 0;
+    $scope.currentIndex = 0;
     $scope.speed = 1;
     imageProvider.getLasted()
       .then(function(images) {
           var firstImage = images[0];
           $scope.imgSrc = firstImage.FileName;
-          currentIndex = 0;
+          $scope.currentIndex = 0;
           $scope.currentDate = firstImage.Date.substr(0, 10);
 
           angular.forEach(images, function (image, index) {
@@ -62,7 +62,7 @@ angular.module('picamApp')
             var firstImage = images[0];
             $scope.imgSrc = firstImage.FileName;
             $scope.selectedItemId = firstImage._id;
-            currentIndex = 0;
+            $scope.currentIndex = 0;
             $scope.currentDate = firstImage.Date.substr(0, 10);
             angular.forEach( images, function(image, index){
               $scope.Images.push({
@@ -110,15 +110,11 @@ angular.module('picamApp')
         $scope.LoadingDates = "Loading " + Math.round(progress * 100) + "%";
       });
 
-    $scope.$watch('selectedItemId', function() {
+    $scope.$watch('currentIndex', function() {
 
-      if ($scope.selectedItemId) {
+      if ($scope.currentIndex) {
         if ($scope.Images.length > 0) {
-          for (var i = 0; i < $scope.Images.length; i++) {
-            if ($scope.Images[i]._id == $scope.selectedItemId) {
-              $scope.imgSrc = $scope.Images[i].FileName;
-            }
-          }
+          $scope.imgSrc = $scope.Images[$scope.currentIndex].FileName;
         }
       }
     })
@@ -157,14 +153,14 @@ angular.module('picamApp')
       if (!angular.isDefined(refreshImg)) {
         createInterval();
       }
-      if (currentIndex <= $scope.Images.length) {
-        $scope.selectedItemId = $scope.Images[currentIndex]._id;
-        $scope.currentTime = $scope.Images[currentIndex].Date.substr(11) + ' - ' + $scope.Images[currentIndex].FileName;
-        $scope.imgSrc = $scope.Images[currentIndex].FileName;
-        currentIndex++;
+      if ($scope.currentIndex <= $scope.Images.length) {
+        $scope.selectedItemId = $scope.Images[$scope.currentIndex]._id;
+        $scope.currentTime = $scope.Images[$scope.currentIndex].Date.substr(11) + ' - ' + $scope.Images[$scope.currentIndex].FileName;
+        $scope.imgSrc = $scope.Images[$scope.currentIndex].FileName;
+        $scope.currentIndex++;
       }
       else{
-        currentIndex = 0;
+        $scope.currentIndex = 0;
         $scope.speed = 1;
         pause();
       }
@@ -181,7 +177,7 @@ angular.module('picamApp')
       var currentId = $scope.selectedItemId;
       for (var i = 0; i < $scope.Images.length; i++) {
         if ($scope.Images[i]._id == currentId) {
-          currentIndex = i;
+          $scope.currentIndex = i;
         }
       }
     }

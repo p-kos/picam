@@ -27,7 +27,7 @@
       {{Images[0].Time}}
     </div>
     <div>
-      <input type="range" id="rngPosition" minlength=0 ng-maxlength="{{Images.length}}" ng-model="selectedItemId" ng-mousedown="pause()" ng-mouseup="setCurrentPositition()">
+      <input type="range" id="rngPosition"  min=0 max="{{Images.length}}" ng-model="currentIndex" ng-mousedown="pause()" ng-mouseup="setCurrentPositition()">
     </div>
     <div>
       {{Images[Images.length-1].Time}}
