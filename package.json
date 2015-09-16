@@ -4,7 +4,7 @@
   "dependencies": {
     "q": "1.4.1",
     "express": "4.13.3",
-    "sqlite3" : "3.0.*"
+    "sqlite3" : "3.1.0"
   },
   "main": "app.js",
   "binary": {
