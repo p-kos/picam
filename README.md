@@ -35,13 +35,6 @@ That should be enought, try with the following command again
 	
 It should show you *v0.10.10*
 
-### Clone the Project
-In raspberry choose a folder and clone the project (make sure to give it the proper rights). I used ~ (home)
-
-	cd ~
-	chmod 777 motion
-	clone https://github.com/p-kos/picam.git
-
 ### Motion
 First we need to update then install motion
 
@@ -73,7 +66,14 @@ The most important
 What you did in last line is when a new image is saved after capture run a NodeJS script and use the file _dbImages.db_ as SQLite3 database any file in _%f_ 
 
 The save the file by pressing **Esc :wq!** in _vi_
- 
+
+
+### Clone the Project
+In raspberry choose a folder and clone the project (make sure to give it the proper rights). I used ~ (home)
+
+	cd ~
+	chmod 777 motion
+	clone https://github.com/p-kos/picam.git 
 	
 ### Packages
 
