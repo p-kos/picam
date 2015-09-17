@@ -1,6 +1,6 @@
 {
   "name": "picam",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "dependencies": {
     "q": "1.4.1",
     "express": "4.13.3",
