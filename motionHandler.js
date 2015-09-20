@@ -14,7 +14,7 @@ var motionHandler = function() {
       cmd += ' ' + processCmdParams;
     }
     cmd += '$"';
-
+    console.log('cmd: '+ cmd);
     cp.exec(cmd, function (error, stdout, stderr) {
       if (error){
         if (String(error.signal) === "null" ){
