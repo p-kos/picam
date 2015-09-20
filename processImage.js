@@ -6,6 +6,7 @@ var fs = require('fs');
 var path = require('path');
 var sqlite3 = require('sqlite3').verbose();
 var q = require("q");
+var socket = require('socket.io-client')('http://localhost:3705');
 var dbfilename = process.argv[2];
 var imagePath = process.argv[3];
 var imageFilename = path.basename(imagePath);
@@ -33,6 +34,10 @@ if (path.extname(imagePath) == ".jpg") {
       }
       else {
         console.log("Success, inserted " + imagePath);
+        if (socket){
+          socket.emit('refreshImg', imagePath);
+          socket.disconnect();
+        }
       }
     });
 

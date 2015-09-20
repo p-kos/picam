@@ -8,7 +8,7 @@
  * Controller of the picamApp
  */
 angular.module('picamApp')
-  .controller('MainCtrl', function ($scope, $interval,  config, imageProvider, socketProvider) {
+  .controller('MainCtrl', function ($scope, $interval,  config, imageProvider, socket) {
 
     $scope.motionStatus = false;
 
@@ -16,6 +16,7 @@ angular.module('picamApp')
       .then(function(data){
         if (data.on ){
           $scope.motionStatus = data.on;
+          $scope.motionStatus = $scope.motionStatus;
         }
       });
 
@@ -32,7 +33,7 @@ angular.module('picamApp')
           });
     }
 
-    socketProvider.on('refreshImg', function(imgSrc){
+    socket.on('refreshImg', function(imgSrc){
       if ($scope.isLive === true){
         $scope.imgSrc = imgSrc;
       }
@@ -167,6 +168,7 @@ angular.module('picamApp')
     $scope.isPlaying=false;
 
     $scope.playPause=function(){
+      $scope.isLive = false;
       if ($scope.isPlaying){
         $scope.pause();
       }

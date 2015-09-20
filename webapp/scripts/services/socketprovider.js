@@ -8,7 +8,7 @@
  * Factory in the picamApp.
  */
 angular.module('picamApp')
-  .factory('socketProvider', function () {
+  .factory('socket', function () {
     var socket = io.connect();
     return {
       on: function (eventName, callback) {
