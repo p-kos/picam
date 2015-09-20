@@ -83,11 +83,6 @@ Go to folder picam and install the packages needed
 	npm install
 	
 ## Let's get it work
-### Motion
-To run motion you just need to execute the command
-	
-	motion
-To cancel **Ctrl + C** 
 
 ### Server
 To run the server 
@@ -105,6 +100,15 @@ Open your favorite browser the raspberry pi url
 Mine is under that IP address.
 
 All the captures images will be saved under /home/pi/picam/captures and the database file will index those
+
+From client the **motion** can be started by a left up button 
+
+### Motion
+Motion can be started by separte through command line
+	
+	motion
+	
+To cancel **Ctrl + C** 
 
 ## Author
 Marco Zarate (P-KoS)
