@@ -3,6 +3,9 @@ var q = require('q');
 var sqlite3=require('sqlite3').verbose();
 var app = express();
 var http = require('http').Server(app);
+var io=require('socket.io');
+var motionHandler = require('./motionHandler.js').motionHandler();
+
 app.use('/api',express.static(__dirname ) );
 app.use('/bower_components', express.static(__dirname  + '/bower_components' ));
 app.use('/captures', express.static(__dirname  + '/captures' ));
@@ -54,6 +57,7 @@ app.get('/api/images/:id', function(request, response){
     }
   });
 });
+
 app.get('/api/images/date/:date', function(request, response) {
 
   getImagesByDay(request.params.date)
@@ -114,7 +118,26 @@ app.get('/api/dates', function(request, response){
   });
 
  });
-//*/
+
+app.get('/api/motion', function(request, response){
+  motionHandler.motionStatus()
+    .then(function(data){
+      response.send(data);
+    }, function(error){
+      response.send(error);
+    })
+});
+
+app.get('/api/motion/:status', function(request, response){
+  var status = request.params.status === "1";
+  motionHandler.startStopMotion(status)
+    .then(function(data){
+      response.send(data);
+    }, function(error){
+      response.send(error);
+    });
+});
+
 var port = 3705;
 http.listen(port);
 console.log('Server is running ' + port);

@@ -8,7 +8,35 @@
  * Controller of the picamApp
  */
 angular.module('picamApp')
-  .controller('MainCtrl', function ($scope, $interval,  config, imageProvider) {
+  .controller('MainCtrl', function ($scope, $interval,  config, imageProvider, socketProvider) {
+
+    $scope.motionStatus = false;
+
+    imageProvider.motionStatus()
+      .then(function(data){
+        if (data.on ){
+          $scope.motionStatus = data.on;
+        }
+      });
+
+    $scope.turnOnOffMotion= function () {
+      $scope.motionStatus = !$scope.motionStatus;
+        imageProvider.turnOnOffMotion($scope.motionStatus)
+          .then(function(data){
+            return imageProvider.motionStatus();
+          })
+          .then(function(data){
+            if (data.on ){
+              $scope.motionStatus = data.on;
+            }
+          });
+    }
+
+    socketProvider.on('refreshImg', function(imgSrc){
+      if ($scope.isLive === true){
+        $scope.imgSrc = imgSrc;
+      }
+    });
 
     $scope.imgSrc;
     var counter=1;

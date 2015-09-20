@@ -130,6 +130,19 @@ angular.module('picamApp')
             defered.reject({success: false, reason: error});
           });
         return defered.promise; */
+      },
+      motionStatus:function() {
+       // var defered = $q.defer();
+        var url = config.serviceUrlBase + '/motion';
+        return httpRequest(url);
+      },
+      turnOnOffMotion:function(on){
+        var value = 0;
+        if (on && on === true){
+          value = 1;
+        }
+        var url = config.serviceUrlBase + '/motion/' + value;
+        return httpRequest(url);
       }
     };
 

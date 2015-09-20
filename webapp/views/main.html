@@ -1,14 +1,21 @@
+<div id="sectionMotionStatus">
+  <img src="images/camera.png" width="30"/>
+  <button id="btnTurnOnOff" ng-class="{'btnOn':motionStatus, 'btnOff': motionStatus == false}" ng-click="turnOnOffMotion()"></button>
+</div>
 
 <div class="imageViewer">
   <div class="tittleSection">
     {{currentDate  | date : format : longDate}}
+
   </div>
 
   <div class="imageSection">
+    <div id="liveBox" ng-show="isLive" >LIVE</div>
     <img ng-src="captures/{{imgSrc}}">
   </div>
 
   <div class="listSection">
+    <input type="checkbox" ng-model="isLive" > Live
     <div ng-repeat="date in Dates">
       <p>{{LoadingDates}}</p>
       <img width="80" ng-src="captures/{{date.FileName}}" ng-click="getImages(date.DateOnly)">

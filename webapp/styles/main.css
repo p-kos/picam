@@ -57,6 +57,15 @@ body {
   text-align: center;
   width: 100%;
 }
+#liveBox{
+  color: #ffffff;
+  background-color: #FF0700;
+  box-shadow: 3px 3px 3px 3px #FF0700;
+  height: 10px;
+  font-size: 9pt;
+  position: absolute;
+
+}
 .imageViewer .imageSection{
   width: 400px;
   height: 300px;
@@ -159,6 +168,45 @@ button:hover{
 #rngPosition{
   width: 240px;
 }
+
+#btnTurnOnOff{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius:50%;
+}
+#btnTurnOnOff.btnOff{
+  background-color: #FF0700;
+  box-shadow: 0px 0px 5px 3px #D2413A;
+  -webkit-box-shadow: 0px 0px 5px 3px #D2413A;
+  -moz-box-shadow: 0px 0px 5px 3px #D2413A;
+  -o-box-shadow: 0px 0px 5px 3px #D2413A;
+  display: block;
+
+  border: solid 4px #FF0000;
+}
+
+#btnTurnOnOff.btnOn{
+  background-color: #008800;
+  box-shadow: 0px 0px 5px 3px #009900;
+  -webkit-box-shadow: 0px 0px 5px 3px #009900;
+  -moz-box-shadow: 0px 0px 5px 3px #009900;
+  -o-box-shadow: 0px 0px 5px 3px #009900;
+  display: block;
+
+  border: solid 4px #008800;
+}
+#btnTurnOnOff:active {
+  box-shadow: 0px 0px 1px 1px #888888;
+  -webkit-box-shadow: 0px 0px 1px 1px #888888;
+  -moz-box-shadow: 0px 0px 1px 1px #888888;
+  box-shadow: 0px 0px 1px 1px #888888;
+
+}
+
+
+
 /* Customize container */
 @media (min-width: 768px) {
   .container {
