@@ -3,7 +3,7 @@ var q = require('q');
 var sqlite3=require('sqlite3').verbose();
 var app = express();
 var http = require('http').Server(app);
-var io=require('socket.io');
+var io = require('socket.io')(http);
 var motionHandler = require('./motionHandler.js').motionHandler();
 
 app.use('/api',express.static(__dirname ) );
@@ -13,6 +13,7 @@ app.use(express.static(__dirname + '/webapp' ) );
 
 var dbFile = "dbImages.db";
 var db;
+
 function getImagesByDay(date){
   db=new sqlite3.Database(dbFile);
   var defered = q.defer();
@@ -34,6 +35,7 @@ function getImagesByDay(date){
   });
   return defered.promise;
 }
+
 app.get('/api/images', function(request, response){
   db=new sqlite3.Database(dbFile);
   db.all("SELECT _id, FileName, Path, Date FROM Image ORDER BY Date", function (err, rows) {
@@ -136,6 +138,18 @@ app.get('/api/motion/:status', function(request, response){
     }, function(error){
       response.send(error);
     });
+});
+
+io.on('connection', function(socket){
+  console.log('connected to socket.');
+
+  socket.on('disconnect', function(){
+    console.log('disconnected from socket');
+  });
+
+  socket.on('refreshImg', function(data){
+    socket.emit('refreshImg', data);
+  })
 });
 
 var port = 3705;
