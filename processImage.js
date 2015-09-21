@@ -36,7 +36,10 @@ if (path.extname(imagePath) == ".jpg") {
         console.log("Success, inserted " + imagePath);
         if (socket){
           socket.emit('refreshImg', imagePath);
-          socket.disconnect();
+          console.log('send to socket: ' + imagePath);
+          setTimeout(function(){
+            socket.disconnect();
+          }, 500);
         }
       }
     });

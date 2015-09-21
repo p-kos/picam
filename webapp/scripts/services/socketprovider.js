@@ -8,8 +8,8 @@
  * Factory in the picamApp.
  */
 angular.module('picamApp')
-  .factory('socket', function () {
-    var socket = io.connect();
+  .factory('socket', ['$rootScope', function ($rootScope) {
+    var socket = io();
     return {
       on: function (eventName, callback) {
         socket.on(eventName, function () {
@@ -30,4 +30,4 @@ angular.module('picamApp')
         })
       }
     };
-  });
+  }]);

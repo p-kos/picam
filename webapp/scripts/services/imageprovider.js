@@ -44,31 +44,12 @@ angular.module('picamApp')
         var defered=$q.defer();
         var url = config.serviceUrlBase + '/images';
         return httpRequest(url);
-        /*
-        $http.get(url)
-          .success(function(data){
-            defered.resolve({success:true, data:data});
-          })
-          .error(function(error,code){
-            defered.reject(error);
-          });
-        return defered.promise;*/
       },
       get:function(id){
         var defered = $q.defer();
         if (id){
           var url = config.serviceUrlBase + '/images/' + id;
           return httpRequest(url);
-
-          /*
-          $http.get(url)
-            .success(function(data){
-              defered.resolve({success:true, data:data});
-            })
-            .error(function(error,code){
-              defered.reject({success:false, reason:error});
-            });
-            */
         }
         else{
           defered.reject({success:false, reason:'id param must be set.'})
@@ -89,14 +70,6 @@ angular.module('picamApp')
           }
           var url = config.serviceUrlBase + '/images/date/' + year + '-' + month + '-' + day;
           return httpRequest(url);
-          /*
-          $http.get(url)
-            .success(function (data) {
-              defered.resolve({success: true, data: data});
-            })
-            .error(function (error, code) {
-              defered.reject({success: false, reason: error});
-            });*/
         }
         else{
           defered.reject({success:false, reason:'y, m, d must be set.'})
@@ -107,29 +80,15 @@ angular.module('picamApp')
         var defered = $q.defer();
         var url = config.serviceUrlBase + '/getLastedImageByDate';
         return httpRequest(url);
-        /*
-        $http.get(url)
-          .success(function (data) {
-            defered.resolve({success: true, data: data});
-          })
-          .error(function (error, code) {
-            defered.reject({success: false, reason: error});
-          });
-        return defered.promise;*/
       },
       getAllDates:function(){
         var defered = $q.defer();
         var url = config.serviceUrlBase + '/dates';
         return httpRequest(url);
-        /*
-        $http.get(url)
-          .success(function (data) {
-            defered.resolve({success: true, data: data});
-          })
-          .error(function (error, code) {
-            defered.reject({success: false, reason: error});
-          });
-        return defered.promise; */
+      },
+      deleteImagesFromDate:function(date){
+        var url = config.serviceUrlBase + '/dates/' + date + '?action=delete';
+        return httpRequest(url);
       },
       motionStatus:function() {
        // var defered = $q.defer();

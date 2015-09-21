@@ -32,11 +32,11 @@ angular.module('picamApp')
             }
           });
     }
-
-    socket.on('refreshImg', function(imgSrc){
-      if ($scope.isLive === true){
-        $scope.imgSrc = imgSrc;
-      }
+    
+    socket.on('refreshImg', function(data){
+      //if ($scope.isLive === true){
+        $scope.imgSrc = data;
+      //}
     });
 
     $scope.imgSrc;
@@ -222,6 +222,15 @@ angular.module('picamApp')
         }
         $scope.pause();
         play();
+      }
+    }
+
+    $scope.deleteDate=function(){
+      if (confirm('Do you want to delete images from date')){
+        imageProvider.deleteImagesFromDate($scope.currentDate)
+          .then(function(data){
+            var a = $scope.Dates;
+          })
       }
     }
   });

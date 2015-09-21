@@ -2,7 +2,7 @@ var express = require('express');
 var q = require('q');
 var sqlite3=require('sqlite3').verbose();
 var app = express();
-var http = require('http').Server(app);
+var http = require('http').createServer(app);
 var io = require('socket.io').listen(http);
 var motionHandler = require('./motionHandler.js').motionHandler();
 
@@ -140,7 +140,7 @@ app.get('/api/motion/:status', function(request, response){
     });
 });
 
-io.sockets.on('connection', function(socket){
+io.on('connection', function(socket){
   console.log('connected to socket. ');
 
   socket.on('disconnect', function(){
@@ -148,7 +148,12 @@ io.sockets.on('connection', function(socket){
   });
 
   socket.on('refreshImg', function(data){
+    console.log('received: ' + data);
     socket.emit('refreshImg', data);
+  });
+
+  socket.on('test', function(data){
+    console.log(data);
   })
 });
 
