@@ -5,6 +5,7 @@ var app = express();
 var http = require('http').createServer(app);
 var io = require('socket.io').listen(http);
 var motionHandler = require('./motionHandler.js').motionHandler();
+var fs = require('fs');
 
 app.use('/api',express.static(__dirname ) );
 app.use('/bower_components', express.static(__dirname  + '/bower_components' ));
@@ -140,6 +141,28 @@ app.get('/api/motion/:status', function(request, response){
     });
 });
 
+app.delete('/api/images/dates/:date', function(request, response) {
+  var newDate = request.params.date.substr(0, 10);
+  var dateFrom = newDate + ' 00:00:00';
+  var dateTo = newDate + ' 23:59:59';
+
+  var qry = "SELECT _id, FileName, Path, Date FROM Image WHERE Date >= Datetime('" + dateFrom + "') "
+    + " and Date <= Datetime('" + dateTo + "') ORDER BY Date";
+
+  db.each(qry, function (error, image) {
+    var filePath = __dirname + '/captures/' + image.FileName;
+    try {
+      fs.unlinkSync(filePath)
+    }
+    catch (e) {
+      console.log(e);
+    }
+    db.run('DELETE FROM Image WHERE _id = ?', image._id);
+  });
+  response.end({success: true});
+
+});
+
 io.on('connection', function(socket){
   console.log('connected to socket. ');
 
@@ -152,9 +175,6 @@ io.on('connection', function(socket){
     socket.emit('refreshImg', data);
   });
 
-  socket.on('test', function(data){
-    console.log(data);
-  })
 });
 
 var port = 3705;

@@ -10,11 +10,14 @@
 angular.module('picamApp')
   .factory('imageProvider', function ($http, $q, config) {
 
-    function httpRequest(url) {
+    function httpRequest(url, action) {
+      if (!action){
+        action = 'GET';
+      }
       var request = new XMLHttpRequest();
       var deferred = $q.defer();
 
-      request.open("GET", url, true);
+      request.open(action, url, true);
       request.onload = onload;
       request.onerror = onerror;
       request.onprogress = onprogress;
@@ -86,15 +89,18 @@ angular.module('picamApp')
         var url = config.serviceUrlBase + '/dates';
         return httpRequest(url);
       },
+
       deleteImagesFromDate:function(date){
-        var url = config.serviceUrlBase + '/dates/' + date + '?action=delete';
-        return httpRequest(url);
+        var url = config.serviceUrlBase + '/images/dates/' + date ;
+        return httpRequest(url, 'DELETE');
       },
+
       motionStatus:function() {
        // var defered = $q.defer();
         var url = config.serviceUrlBase + '/motion';
         return httpRequest(url);
       },
+
       turnOnOffMotion:function(on){
         var value = 0;
         if (on && on === true){

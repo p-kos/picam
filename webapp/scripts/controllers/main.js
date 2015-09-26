@@ -32,7 +32,7 @@ angular.module('picamApp')
             }
           });
     }
-    
+
     socket.on('refreshImg', function(data){
       //if ($scope.isLive === true){
         $scope.imgSrc = data;
@@ -47,8 +47,10 @@ angular.module('picamApp')
     $scope.currentTime = "00:00:00";
     $scope.currentIndex = 0;
     $scope.speed = 1;
-    imageProvider.getLasted()
-      .then(function(images) {
+
+    function getLasted() {
+      imageProvider.getLasted()
+        .then(function (images) {
           var firstImage = images[0];
           $scope.imgSrc = firstImage.FileName;
           $scope.currentIndex = 0;
@@ -66,13 +68,15 @@ angular.module('picamApp')
             });
           });
 
-      }, function (error) {
-        // If there's an error or a non-200 status code, log the error.
-        console.error(error);
-      }, function (progress) {
-        // Log the progress as it comes in.
-        $scope.currentTime = "Request progress: " + Math.round(progress * 100) + "%";
-      });
+        }, function (error) {
+          // If there's an error or a non-200 status code, log the error.
+          console.error(error);
+        }, function (progress) {
+          // Log the progress as it comes in.
+          $scope.currentTime = "Request progress: " + Math.round(progress * 100) + "%";
+        });
+    }
+    getLasted();
 
     $scope.getImages = function(date) {
       //pause();
@@ -117,27 +121,30 @@ angular.module('picamApp')
 
     $scope.Dates = new Array();
     $scope.LoadingDates = "";
-    imageProvider.getAllDates()
-      .then(function(images) {
-        angular.forEach(images, function (image, index) {
-          $scope.Dates.push({
-            index: index,
-            _id: image._id,
-            FileName: image.FileName,
-            Path: image.Path,
-            Date: image.Date,
-            DateOnly: image.Date.substr(0, 10),
-            Cnt:image.Cnt
+    function getAllDates() {
+      imageProvider.getAllDates()
+        .then(function (images) {
+          angular.forEach(images, function (image, index) {
+            $scope.Dates.push({
+              index: index,
+              _id: image._id,
+              FileName: image.FileName,
+              Path: image.Path,
+              Date: image.Date,
+              DateOnly: image.Date.substr(0, 10),
+              Cnt: image.Cnt
+            });
           });
+          $scope.LoadingDates = "";
+        }, function (error) {
+          // If there's an error or a non-200 status code, log the error.
+          console.error(error);
+        }, function (progress) {
+          // Log the progress as it comes in.
+          $scope.LoadingDates = "Loading " + Math.round(progress * 100) + "%";
         });
-        $scope.LoadingDates = "";
-      }, function (error) {
-        // If there's an error or a non-200 status code, log the error.
-        console.error(error);
-      }, function (progress) {
-        // Log the progress as it comes in.
-        $scope.LoadingDates = "Loading " + Math.round(progress * 100) + "%";
-      });
+    }
+    getAllDates();
 
     $scope.$watch('currentIndex', function() {
 
@@ -226,10 +233,11 @@ angular.module('picamApp')
     }
 
     $scope.deleteDate=function(){
-      if (confirm('Do you want to delete images from date')){
+      if (confirm('Do you want to delete images from "' + $scope.currentDate + '"')){
         imageProvider.deleteImagesFromDate($scope.currentDate)
           .then(function(data){
-            var a = $scope.Dates;
+            getAllDates();
+            getLasted();
           })
       }
     }
