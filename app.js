@@ -159,7 +159,7 @@ app.delete('/api/images/dates/:date', function(request, response) {
     }
     db.run('DELETE FROM Image WHERE _id = ?', image._id);
   });
-  response.end({success: true});
+  response.end();
 
 });
 
