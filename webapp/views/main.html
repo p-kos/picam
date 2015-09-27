@@ -3,7 +3,7 @@
   <button id="btnTurnOnOff" ng-class="{'btnOn':motionStatus, 'btnOff': motionStatus == false}" ng-click="turnOnOffMotion()"></button>
 </div>
 
-<div class="imageViewer">
+<div id="imageViewer" ng-class="{'ready': inProgress===false, 'inProgress': inProgress === true}">
   <div class="tittleSection">
     {{currentDate  | date : format : longDate}}
 

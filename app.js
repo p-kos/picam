@@ -3,7 +3,7 @@ var q = require('q');
 var sqlite3=require('sqlite3').verbose();
 var app = express();
 var http = require('http').createServer(app);
-//var io = require('socket.io').listen(http);
+var io = require('socket.io').listen(http);
 var motionHandler = require('./motionHandler.js').motionHandler();
 var fs = require('fs');
 
@@ -163,7 +163,7 @@ app.delete('/api/images/dates/:date', function(request, response) {
 
 });
 
-/*
+
 io.on('connection', function(socket){
 
   console.log('connected to socket. ');
@@ -178,7 +178,7 @@ io.on('connection', function(socket){
   });
 
 });
-*/
+
 var port = 3705;
 http.listen(port);
 console.log('Server is running ' + port);

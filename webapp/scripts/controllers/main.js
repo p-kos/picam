@@ -10,6 +10,7 @@
 angular.module('picamApp')
   .controller('MainCtrl', function ($scope, $interval,  config, imageProvider, socket) {
 
+    $scope.inProgress = false;
     $scope.motionStatus = false;
 
     imageProvider.motionStatus()
@@ -67,13 +68,13 @@ angular.module('picamApp')
               DateOnly: image.Date.substr(0, 10)
             });
           });
-
+          $scope.inProgress = false;
         }, function (error) {
           // If there's an error or a non-200 status code, log the error.
           console.error(error);
         }, function (progress) {
-          // Log the progress as it comes in.
-          $scope.currentTime = "Request progress: " + Math.round(progress * 100) + "%";
+          $scope.inProgress = true;
+          $scope.currentTime = "Loading: " + Math.round(progress * 100) + "%";
         });
     }
     getLasted();
@@ -110,12 +111,16 @@ angular.module('picamApp')
 
             });
           }
+          $scope.inProgress = false;
+
         }, function (error) {
-          // If there's an error or a non-200 status code, log the error.
+          $scope.inProgress = false;
+          $scope.currentTime = error;
           console.error(error);
+
         }, function (progress) {
-          // Log the progress as it comes in.
-          $scope.currentTime = "Request progress: " + Math.round(progress * 100) + "%";
+          $scope.inProgress = true;
+          $scope.currentTime = "Loading: " + Math.round(progress * 100) + "%";
         })
     };
 
@@ -136,11 +141,14 @@ angular.module('picamApp')
             });
           });
           $scope.LoadingDates = "";
+          $scope.inProgress = false;
+
         }, function (error) {
-          // If there's an error or a non-200 status code, log the error.
+          $scope.inProgress = false;
           console.error(error);
+
         }, function (progress) {
-          // Log the progress as it comes in.
+          $scope.inProgress = true;
           $scope.LoadingDates = "Loading " + Math.round(progress * 100) + "%";
         });
     }
@@ -238,6 +246,12 @@ angular.module('picamApp')
           .then(function(data){
             getAllDates();
             getLasted();
+          }, function(error)
+          {
+            $scope.inProgress = false;
+            $scope.currentTime = error;
+          }, function(progress){
+            $scope.inProgress = false;
           })
       }
     }
