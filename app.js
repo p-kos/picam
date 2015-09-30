@@ -181,4 +181,4 @@ io.on('connection', function(socket){
 
 var port = 3705;
 http.listen(port);
-console.log('Server is running ' + port);
+console.log('picam server is running at port ' + port);
