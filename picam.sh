@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-node /home/pi/picam/app.js
+sudo $NODE_JS_HOME/bin/node  /home/pi/picam/app.js
