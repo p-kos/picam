@@ -85,9 +85,13 @@ Go to folder picam and install the packages needed
 ## Let's get it work
 
 ### Server
-To run the server 
+First add the permission to run the picam server
 
-	node app.js
+	sudo chmod +x picam.sh
+	
+Then run the server 
+
+	./picam.sh
 
 The server will run under port **3705** 
 
@@ -109,6 +113,24 @@ Motion can be started by separte through command line
 	motion
 	
 To cancel **Ctrl + C** 
+
+### Autostart
+In order to autostart the picam server edit the rc.local file at the end with the following
+
+	sudo vi /etc/rc.local
+	
+add
+
+	node /home/pi/picam/picam.sh &
+	
+before line
+
+	exit 0
+	
+
+Restart the system
+
+	sudo shutdown -r now
 
 ## Author
 Marco Zarate (P-KoS)
