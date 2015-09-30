@@ -50,10 +50,10 @@ body {
   border-radius: 10px;
 }
 #imageViewer.ready{
-
+opacity: 1;
 }
 #imageViewer.inProgress{
-
+  opacity: 0.3;
 }
 
 #imageViewer div{
