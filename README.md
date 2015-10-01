@@ -121,7 +121,7 @@ In order to autostart the picam server edit the rc.local file at the end with th
 	
 add
 
-	node /home/pi/picam/picam.sh &
+	/home/pi/picam/picam.sh &
 	
 before line
 
