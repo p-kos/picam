@@ -12,7 +12,7 @@ app.use('/bower_components', express.static(__dirname  + '/bower_components' ));
 app.use('/captures', express.static(__dirname  + '/captures' ));
 app.use(express.static(__dirname + '/webapp' ) );
 
-var dbFile = "dbImages.db";
+var dbFile = __dirname + "/dbImages.db";
 var db;
 
 function getImagesByDay(date){

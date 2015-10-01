@@ -9,7 +9,7 @@ var motionHandler = function() {
 
   function motionStatus(){
     var defered = q.defer();
-    var cmd = 'ps aux | grep "' + processName;
+    var cmd = 'ps aux | grep "[0-9][0-9] ' + processName;
     if (processCmdParams){
       cmd += ' ' + processCmdParams;
     }
