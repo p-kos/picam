@@ -9,11 +9,11 @@ var motionHandler = function() {
 
   function motionStatus(){
     var defered = q.defer();
-    var cmd = 'ps aux | grep "[0-9][0-9] ' + processName;
+    var cmd = 'ps aux | grep ' + processName;
     if (processCmdParams){
       cmd += ' ' + processCmdParams;
     }
-    cmd += '$"';
+    cmd += ' | grep -v grep';
     console.log('cmd: '+ cmd);
     cp.exec(cmd, function (error, stdout, stderr) {
       if (error){
