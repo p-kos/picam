@@ -19,7 +19,7 @@ function getImagesByDay(date){
   db=new sqlite3.Database(dbFile);
   var defered = q.defer();
 
-  var newDate = date.substr(0, 10);
+  var newDate = date.substring(0, 10);
   var dateFrom = newDate + ' 00:00:00';
   var dateTo = newDate + ' 23:59:59';
 
