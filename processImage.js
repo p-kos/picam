@@ -34,13 +34,13 @@ if (path.extname(imagePath) == ".jpg") {
       }
       else {
         console.log("Success, inserted " + imagePath);
-        if (socket){
-          socket.emit('refreshImg', imagePath);
-          console.log('send to socket: ' + imagePath);
-          setTimeout(function(){
-            socket.disconnect();
-          }, 500);
-        }
+        //if (socket){
+        //  socket.emit('refreshImg', imagePath);
+        //  console.log('send to socket: ' + imagePath);
+        //  setTimeout(function(){
+        //    socket.disconnect();
+        //  }, 500);
+        //}
       }
     });
 
