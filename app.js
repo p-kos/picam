@@ -16,24 +16,30 @@ var dbFile = __dirname + "/dbImages.db";
 var db;
 
 function getImagesByDay(date){
-  db=new sqlite3.Database(dbFile);
+
   var defered = q.defer();
+  if (date) {
+    db = new sqlite3.Database(dbFile);
 
-  var newDate = date.substring(0, 10);
-  var dateFrom = newDate + ' 00:00:00';
-  var dateTo = newDate + ' 23:59:59';
+    var newDate = date.substring(0, 10);
+    var dateFrom = newDate + ' 00:00:00';
+    var dateTo = newDate + ' 23:59:59';
 
-  var qry = "SELECT _id, FileName, Path, Date FROM Image WHERE Date >= Datetime('" + dateFrom +"') "
-    + " and Date <= Datetime('" + dateTo + "') ORDER BY Date";
+    var qry = "SELECT _id, FileName, Path, Date FROM Image WHERE Date >= Datetime('" + dateFrom + "') "
+      + " and Date <= Datetime('" + dateTo + "') ORDER BY Date";
 
-  db.all(qry, function (err, rows) {
-    if (err) {
-      defered.reject(err);
-    }
-    else {
-      defered.resolve(rows);
-    }
-  });
+    db.all(qry, function (err, rows) {
+      if (err) {
+        defered.reject(err);
+      }
+      else {
+        defered.resolve(rows);
+      }
+    });
+  }
+  else{
+    defered.reject("Date is empty");
+  }
   return defered.promise;
 }
 
