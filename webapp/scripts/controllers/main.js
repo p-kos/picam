@@ -80,7 +80,7 @@ angular.module('picamApp')
     getLasted();
 
     $scope.getImages = function(date) {
-      //pause();
+      $scope.pause();
       var year =d.getFullYear();
       var month = d.getMonth() + 1;
       var day = d.getDate();
@@ -98,6 +98,7 @@ angular.module('picamApp')
             $scope.selectedItemId = firstImage._id;
             $scope.currentIndex = 0;
             $scope.currentDate = firstImage.Date.substr(0, 10);
+            $scope.Images = [];
             angular.forEach( images, function(image, index){
               $scope.Images.push({
                 index:index,
@@ -219,12 +220,7 @@ angular.module('picamApp')
     }
 
     $scope.setCurrentPositition=function() {
-      var currentId = $scope.selectedItemId;
-      for (var i = 0; i < $scope.Images.length; i++) {
-        if ($scope.Images[i]._id == currentId) {
-          $scope.currentIndex = i;
-        }
-      }
+      //$scope.imgSrc = $scope.Images[$scope.currentIndex].FileName;
     }
 
     $scope.fwd=function(){

@@ -82,6 +82,7 @@ opacity: 1;
 #imageViewer .imageSection img{
   width: 400px;
   border: solid 1px #000000;
+  cursor: hand;
 }
 #imageViewer .listSection{
   width: 100px;
