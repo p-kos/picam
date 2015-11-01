@@ -72,8 +72,8 @@ The save the file by pressing **Esc :wq!** in _vi_
 In raspberry choose a folder and clone the project (make sure to give it the proper rights). I used ~ (home)
 
 	cd ~
-	chmod 777 motion
-	clone https://github.com/p-kos/picam.git 
+	git clone https://github.com/p-kos/picam.git 
+	chmod 777 picam
 	
 ### Packages
 
