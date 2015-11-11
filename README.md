@@ -142,7 +142,8 @@ Marco Zarate (P-KoS)
 [Linked in](https://bo.linkedin.com/in/marcozaratez)
 
 ## Thanks
-Thx to many post I saw in order to learn how to configure motion.
+Thx to many post I saw before writing my own.
+
 [Video Vigilancia con el Raspberry Pi](http://patolin.com/blog/2012/12/12/video-vigilancia-con-el-raspberry-pi/)
 
 [Jeremy's Blog](http://jeremyblythe.blogspot.com) 
