@@ -39,7 +39,7 @@ It should show you *v0.10.10*
 First we need to update then install motion
 
 	sudo apt-get update
-	sudo apt-get motion
+	sudo apt-get install motion
 	
 Open the configuration file and replace the lines by
 	
@@ -69,11 +69,26 @@ The save the file by pressing **Esc :wq!** in _vi_
 
 
 ### Clone the Project
+First make sure you have git installed by
+	
+	whereis git
+	
+if the command returns any result that means you have `git` installed. In case you don't have any results, you can install it by
+
+	sudo apt-get install git
+
 In raspberry choose a folder and clone the project (make sure to give it the proper rights). I used ~ (home)
 
 	cd ~
 	git clone https://github.com/p-kos/picam.git 
 	chmod 777 picam
+	
+	cd picam
+	mkdir captures
+	chmod 777 captures
+	
+The last line is to captured images by motion (see Motion section)
+
 	
 ### Packages
 
