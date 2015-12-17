@@ -245,4 +245,11 @@ angular.module('picamApp')
           })
       }
     }
+    
+    $scope.$watch('isLive', function() {
+
+      if ($scope.isLive && ($scope.isLive === true || $scope.isLive ==='true' )) {
+        $scope.imgSrc = config.liveUrl;
+      }
+    })
   });

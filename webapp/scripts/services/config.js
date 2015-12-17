@@ -12,5 +12,5 @@ angular.module('picamApp')
     intervalTimeInSeconds:1000
     , serviceUrlBase: '/api'
     , imagesBaseUrl:'captures'
-    , liveUri:'http://192.168.1.111:8081'
+    , liveUrl:'http://192.168.1.111:8081'
   });
