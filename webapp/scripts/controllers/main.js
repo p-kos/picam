@@ -34,12 +34,6 @@ angular.module('picamApp')
           });
     }
 
-    //socket.on('refreshImg', function(data){
-      //if ($scope.isLive === true){
-    //    $scope.imgSrc = data;
-      //}
-    //});
-
     $scope.imgSrc;
     var counter=1;
     var d = new Date();

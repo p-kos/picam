@@ -16,7 +16,7 @@
 
   <div class="listSection">
 
-    <!--<input type="checkbox" ng-model="isLive" ng-click="pause()"  ng-show="motionStatus"> <b ng-show="motionStatus">Live</b>-->
+    <input type="checkbox" ng-model="isLive" ng-click="pause()"  ng-show="motionStatus"> <b ng-show="motionStatus">Live</b>
     <div ng-repeat="date in Dates" class="img-thumbnail">
       <p>{{LoadingDates}}</p>
       <img width="80" ng-src="captures/{{date.FileName}}" ng-click="getImages(date.DateOnly)">
